@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {
   LOOP_SECONDS, SCRIPT, GRACE_SECONDS, MACHINES, createRng, loopTime, batteryAt, upsAt, upsAlerts,
   datacenterAt, isOnline, formatDuration, createState, step, summary, sparkPath, answer, runCommand,
-} from '../site/js/demo-data.js';
+} from '../js/demo-data.js';
 
 const fixed = () => 0.5;
 

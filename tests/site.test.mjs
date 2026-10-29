@@ -5,7 +5,7 @@ import { readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
 
-const site = fileURLToPath(new URL('../site/', import.meta.url));
+const site = fileURLToPath(new URL('../', import.meta.url));
 const html = readFileSync(join(site, 'index.html'), 'utf8');
 const ids = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
 const attrs = (name) => [...html.matchAll(new RegExp(`\\s${name}="([^"]+)"`, 'g'))].map((m) => m[1]);
@@ -50,9 +50,13 @@ test('hay un solo h1', () => {
   assert.equal((html.match(/<h1[\s>]/g) || []).length, 1);
 });
 
-test('el dominio de GitHub Pages es emergycl.co', () => {
-  assert.equal(readFileSync(join(site, 'CNAME'), 'utf8').trim(), 'emergycl.co');
-  assert.match(html, /<link rel="canonical" href="https:\/\/emergycl.co\/">/);
+test('el sitio funciona en una subcarpeta (rutas relativas, sin "/" inicial)', () => {
+  const rooted = [...attrs('href'), ...attrs('src'), ...attrs('poster')].filter((u) => u.startsWith('/') && !u.startsWith('//'));
+  assert.deepEqual(rooted, []);
+});
+
+test('GitHub Pages sirve los archivos tal cual (sin Jekyll)', () => {
+  assert.ok(existsSync(join(site, '.nojekyll')));
 });
 
 test('los módulos JS importan archivos que existen', () => {
