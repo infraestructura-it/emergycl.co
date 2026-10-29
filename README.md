@@ -59,7 +59,7 @@ Al compartir el enlace en WhatsApp, Facebook o LinkedIn se ve la tarjeta `assets
 
 1. Grabe el panel real (p. ej. con OBS o la grabadora de Windows `Win + Alt + R`) y expórtelo en **MP4 (H.264)**, idealmente 1080p y menos de 50 MB (GitHub rechaza archivos de más de 100 MB).
 2. Guárdelo como `assets/video/demo.mp4`.
-3. Opcional: cambie la portada `assets/video/poster.svg` por una captura (`poster.jpg`) y actualice el atributo `poster` en `index.html`.
+3. La portada es `assets/video/poster.jpg`.
 4. Haga commit y push. Cuando el video existe, la sección de demo muestra el selector **Demo en vivo / Video**; si no existe, solo se ve la demo en vivo.
 
 ## Publicación
