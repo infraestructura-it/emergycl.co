@@ -6,11 +6,20 @@
   <title>Emergycl · Monitoreo y acceso remoto a su infraestructura</title>
   <meta name="description" content="Vea y opere UPS, datacenters, PCs y equipos de red de todas sus sedes desde el navegador, sin abrir puertos ni pedir IP pública. Alertas por Telegram y WhatsApp, acceso remoto y un asistente con IA.">
   <meta name="theme-color" content="#0c1622">
-  <link rel="canonical" href="https://emergycl.co/">
+  <link rel="canonical" href="https://infraestructura-it.com/emergycl.co/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Emergycl · Sus equipos a la vista, sin abrir un solo puerto">
   <meta property="og:description" content="Monitoreo de UPS, datacenter y red, acceso remoto en el navegador y alertas inmediatas para todas sus sedes.">
-  <meta property="og:url" content="https://emergycl.co/">
+  <meta property="og:url" content="https://infraestructura-it.com/emergycl.co/">
+  <meta property="og:site_name" content="Emergycl">
+  <meta property="og:image" content="https://infraestructura-it.com/emergycl.co/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Emergycl: monitoreo y acceso remoto de sus sedes sin abrir puertos">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Emergycl · Sus equipos a la vista, sin abrir un solo puerto">
+  <meta name="twitter:description" content="Monitoreo de UPS, datacenter y red, acceso remoto en el navegador y alertas inmediatas para todas sus sedes.">
+  <meta name="twitter:image" content="https://infraestructura-it.com/emergycl.co/assets/og-image.png">
   <meta property="og:locale" content="es_CO">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -230,6 +239,13 @@
       </div>
 
       <div class="video-wrap" id="demo-video" hidden>
+        <div class="yt" id="demo-yt" hidden>
+          <button type="button" class="yt-play" id="demo-yt-play" aria-label="Reproducir el video de la demo en YouTube">
+            <img id="demo-yt-thumb" alt="" loading="lazy" width="480" height="360">
+            <span class="yt-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
+          </button>
+          <p class="yt-note">El video se carga desde YouTube al reproducirlo.</p>
+        </div>
         <video id="demo-video-el" controls preload="metadata" playsinline poster="assets/video/poster.svg">
           <source src="assets/video/demo.mp4" type="video/mp4">
         </video>
@@ -349,6 +365,11 @@
           <p class="form-status" id="cf-status" role="status"></p>
         </div>
       </form>
+      <div class="contact-alt" id="contact-alt" hidden>
+        <p>¿Prefiere escribirnos ya?</p>
+        <a class="btn btn-wa" id="contact-wa" href="#" target="_blank" rel="noopener" hidden>Escribir por WhatsApp</a>
+        <ul class="social social-inline" data-social data-social-skip="whatsapp" aria-label="Redes sociales de Emergycl"></ul>
+      </div>
     </section>
   </main>
 
@@ -366,7 +387,16 @@
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
+    <div class="foot-social" id="foot-social" hidden>
+      <p>Síganos</p>
+      <ul class="social" data-social aria-label="Redes sociales de Emergycl"></ul>
+    </div>
     <p class="foot-note">Pulse <kbd>Esc</kbd> para pausar o reanudar las animaciones.</p>
   </footer>
+
+  <a class="wa-float" id="wa-float" href="#" target="_blank" rel="noopener" hidden aria-label="Escribir a Emergycl por WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 0 0-7.4 12.7L3.5 20.5l4.4-1.1A8.5 8.5 0 1 0 12 3.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.2 8.6c.3-.6.6-.6.9-.6h.5c.2 0 .4.1.5.4l.7 1.6c.1.2 0 .5-.1.6l-.5.6c-.1.1-.1.3 0 .5.5.9 1.3 1.7 2.3 2.2.2.1.4.1.5 0l.6-.6c.2-.2.4-.2.6-.1l1.6.7c.2.1.4.3.3.6-.1.9-.9 1.6-1.8 1.6-2.8-.2-5.6-3-5.8-5.8 0-.6.3-1.2.7-1.7z" fill="currentColor"/></svg>
+    <span>WhatsApp</span>
+  </a>
 </body>
 </html>

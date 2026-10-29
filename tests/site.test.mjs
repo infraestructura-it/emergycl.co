@@ -60,7 +60,7 @@ test('GitHub Pages sirve los archivos tal cual (sin Jekyll)', () => {
 });
 
 test('los módulos JS importan archivos que existen', () => {
-  for (const f of ['main.js', 'demo.js', 'demo-data.js']) {
+  for (const f of ['main.js', 'demo.js', 'demo-data.js', 'social.js']) {
     const src = readFileSync(join(site, 'js', f), 'utf8');
     for (const [, imp] of src.matchAll(/from '(\.\/[^']+)'/g)) {
       assert.ok(existsSync(join(site, 'js', imp)), `${f} importa ${imp}`);
@@ -69,6 +69,21 @@ test('los módulos JS importan archivos que existen', () => {
 });
 
 test('el sitio no publica datos privados del hub', () => {
-  const all = ['index.html', 'js/main.js', 'js/demo.js', 'js/demo-data.js'].map((f) => readFileSync(join(site, f), 'utf8')).join('\n');
+  const all = ['index.html', 'js/main.js', 'js/demo.js', 'js/demo-data.js', 'js/social.js'].map((f) => readFileSync(join(site, f), 'utf8')).join('\n');
   assert.doesNotMatch(all, /ADMIN_TOKEN|10\.147\.|hubups\.|@gmail\.com/);
+});
+
+test('la imagen para compartir existe y las metaetiquetas apuntan a ella', () => {
+  assert.ok(existsSync(join(site, 'assets', 'og-image.png')));
+  const og = html.match(/<meta property="og:image" content="([^"]+)">/)?.[1];
+  const canonical = html.match(/<link rel="canonical" href="([^"]+)">/)?.[1];
+  assert.ok(og && canonical, 'faltan og:image o canonical');
+  assert.equal(og, `${canonical}assets/og-image.png`);
+  assert.match(html, /<meta name="twitter:card" content="summary_large_image">/);
+});
+
+test('los enlaces externos que abren pestaña llevan rel="noopener"', () => {
+  const blanks = [...html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)].map((m) => m[0]);
+  assert.ok(blanks.length > 0);
+  for (const a of blanks) assert.match(a, /rel="noopener"/);
 });

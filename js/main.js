@@ -1,5 +1,6 @@
 import { createState, step, summary } from './demo-data.js';
 import { initDemo } from './demo.js';
+import { SOCIAL, socialLinks, whatsappLink } from './social.js';
 
 // Correo que recibe las solicitudes del formulario de contacto
 export const CONTACT_EMAIL = 'contacto@emergycl.co';
@@ -106,3 +107,45 @@ form?.addEventListener('submit', (e) => {
   status.className = 'form-status';
   status.textContent = `Abrimos su correo con la solicitud lista. Si no se abrió, escríbanos a ${CONTACT_EMAIL}.`;
 });
+
+/* Redes sociales y WhatsApp: solo aparece lo que está configurado en social.js */
+const ICONS = {
+  whatsapp: '<path d="M12 3.5a8.5 8.5 0 0 0-7.4 12.7L3.5 20.5l4.4-1.1A8.5 8.5 0 1 0 12 3.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>',
+  youtube: '<rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 9v6l5-3z" fill="currentColor"/>',
+  instagram: '<rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/>',
+  facebook: '<circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M13 20.5v-7h2.4M13 13.5h-2.2M13 13.5V11c0-1.4.8-2.2 2.2-2.2h1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+  linkedin: '<rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 10.5v6M8 7.6v.1M11.5 16.5v-6M11.5 13c0-1.5 1-2.5 2.3-2.5s2.2.9 2.2 2.5v3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+};
+
+function renderSocial() {
+  const links = socialLinks(SOCIAL);
+  const ns = 'http://www.w3.org/2000/svg';
+  for (const ul of document.querySelectorAll('[data-social]')) {
+    const skip = (ul.dataset.socialSkip || '').split(',');
+    ul.replaceChildren(...links.filter((l) => !skip.includes(l.id)).map((l) => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = l.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.dataset.network = l.id;
+      const svg = document.createElementNS(ns, 'svg');
+      svg.setAttribute('viewBox', '0 0 24 24');
+      svg.setAttribute('aria-hidden', 'true');
+      svg.innerHTML = ICONS[l.id];
+      a.append(svg, l.label);
+      li.append(a);
+      return li;
+    }));
+  }
+  const wa = whatsappLink(SOCIAL.whatsapp.number, SOCIAL.whatsapp.message);
+  for (const id of ['wa-float', 'contact-wa']) {
+    const el = document.getElementById(id);
+    if (el && wa) { el.href = wa; el.hidden = false; }
+  }
+  const foot = document.getElementById('foot-social');
+  const alt = document.getElementById('contact-alt');
+  if (foot) foot.hidden = links.length === 0;
+  if (alt) alt.hidden = links.length === 0;
+}
+renderSocial();

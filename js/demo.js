@@ -1,4 +1,5 @@
 // Interfaz de la demo del panel (DOM). La lógica y los datos están en demo-data.js.
+import { SOCIAL, youtubeEmbed, youtubeThumb } from './social.js';
 import { answer, runCommand, sparkPath, summary, upsAlerts, formatDuration, TERMINAL_HELP } from './demo-data.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -293,15 +294,34 @@ function setupTerminal(state) {
 }
 
 /* ---------- Video opcional ---------- */
-// Si existe assets/video/demo.mp4 aparece la pestaña "Video"; si no, solo la demo en vivo.
+// Si hay un video de YouTube en social.js se usa ese; si no, assets/video/demo.mp4 si existe.
+// Sin ninguno de los dos, solo se ve la demo en vivo.
 function setupVideo() {
   const video = $('#demo-video-el');
   const modes = $('#demo-modes');
   if (!video || !modes) return;
-  const show = () => {
+  const embed = youtubeEmbed(SOCIAL.youtube.videoId);
+
+  if (embed) {
+    video.remove();
+    const yt = $('#demo-yt');
+    yt.hidden = false;
+    const thumb = $('#demo-yt-thumb');
+    thumb.addEventListener('error', () => { thumb.hidden = true; }, { once: true });
+    thumb.src = youtubeThumb(SOCIAL.youtube.videoId);
+    $('#demo-yt-play').addEventListener('click', () => {
+      const frame = document.createElement('iframe');
+      frame.src = embed;
+      frame.title = 'Video de la demo de Emergycl';
+      frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      frame.allowFullscreen = true;
+      $('#demo-yt-play').replaceWith(frame);
+    }, { once: true });
     modes.hidden = false;
-  };
-  video.addEventListener('loadedmetadata', show, { once: true });
+  } else {
+    video.addEventListener('loadedmetadata', () => { modes.hidden = false; }, { once: true });
+  }
+
   const live = $('#mode-live');
   const vid = $('#mode-video');
   const pick = (isVideo) => {
@@ -309,7 +329,11 @@ function setupVideo() {
     vid.setAttribute('aria-selected', String(isVideo));
     $('#demo-live').hidden = isVideo;
     $('#demo-video').hidden = !isVideo;
-    if (!isVideo) video.pause();
+    if (!isVideo) {
+      if (video.isConnected) video.pause();
+      const frame = $('#demo-yt iframe');
+      if (frame) frame.src = frame.src; // detiene la reproducción
+    }
   };
   live.addEventListener('click', () => pick(false));
   vid.addEventListener('click', () => pick(true));

@@ -41,7 +41,21 @@ Simula seis sedes ficticias. Cada 100 segundos se repite el mismo guion:
 
 El guion, los umbrales y las respuestas del asistente y de la terminal están en `js/demo-data.js`.
 
-## Agregar el video de la demo
+## Redes sociales, WhatsApp y YouTube
+
+Todo se configura en `js/social.js`; lo que quede vacío no aparece en la página.
+
+| Campo | Qué muestra |
+|---|---|
+| `whatsapp.number` | Botón flotante de WhatsApp, botón en Contacto y enlace en el pie. Acepta `3001234567` o `+57 300 123 4567` |
+| `whatsapp.message` | Mensaje que aparece escrito al abrir el chat |
+| `youtube.channel` | Enlace al canal en Contacto y en el pie |
+| `youtube.videoId` | Video de la demo (id o enlace de YouTube). Aparece en la pestaña **Video** y solo se carga de YouTube al darle reproducir. Tiene prioridad sobre `assets/video/demo.mp4` |
+| `instagram`, `facebook`, `linkedin` | Enlaces a los perfiles (solo `https://` del dominio de cada red) |
+
+Al compartir el enlace en WhatsApp, Facebook o LinkedIn se ve la tarjeta `assets/og-image.png` (1200×630). Si cambia la dirección del sitio, actualice `canonical`, `og:url`, `og:image` y `twitter:image` en `index.html`. Para refrescar la vista previa en Facebook use su *Sharing Debugger*.
+
+## Agregar el video de la demo (archivo propio)
 
 1. Grabe el panel real (p. ej. con OBS o la grabadora de Windows `Win + Alt + R`) y expórtelo en **MP4 (H.264)**, idealmente 1080p y menos de 50 MB (GitHub rechaza archivos de más de 100 MB).
 2. Guárdelo como `assets/video/demo.mp4`.
