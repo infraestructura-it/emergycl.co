@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://emergycl.co/sitemap.xml

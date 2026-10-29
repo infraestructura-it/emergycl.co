@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emergycl · Monitoreo y acceso remoto a su infraestructura</title>
+  <meta name="description" content="Vea y opere UPS, datacenters, PCs y equipos de red de todas sus sedes desde el navegador, sin abrir puertos ni pedir IP pública. Alertas por Telegram y WhatsApp, acceso remoto y un asistente con IA.">
+  <meta name="theme-color" content="#0c1622">
+  <link rel="canonical" href="https://emergycl.co/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Emergycl · Sus equipos a la vista, sin abrir un solo puerto">
+  <meta property="og:description" content="Monitoreo de UPS, datacenter y red, acceso remoto en el navegador y alertas inmediatas para todas sus sedes.">
+  <meta property="og:url" content="https://emergycl.co/">
+  <meta property="og:locale" content="es_CO">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+
+  <header class="top">
+    <a class="brand" href="#" aria-label="Emergycl, inicio">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 22h7l3-9 4 14 3-9h7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Emergycl</span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-list">Menú</button>
+      <ul id="nav-list">
+        <li><a href="#demo">Demo</a></li>
+        <li><a href="#funciones">Funciones</a></li>
+        <li><a href="#como-funciona">Cómo funciona</a></li>
+        <li><a href="#seguridad">Seguridad</a></li>
+        <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+      </ul>
+    </nav>
+    <p class="clock" aria-label="Hora en Bogotá"><span id="clock-time">--:--:--</span> Bogotá</p>
+  </header>
+
+  <main id="contenido">
+    <!-- Portada -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">Sus equipos a la vista, sin abrir un solo puerto.</h1>
+        <p class="lede">Emergycl conecta las UPS, los datacenters, los PCs y la red de todas sus sedes a un solo panel. Usted ve qué pasa, recibe el aviso antes que el cliente y entra a resolver desde el navegador.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#demo">Probar la demo</a>
+          <a class="btn btn-ghost" href="#contacto">Agendar una demostración</a>
+        </div>
+        <p class="live" aria-live="polite">
+          <span class="dot" id="hero-dot"></span>
+          <span id="hero-status">6 de 6 equipos en línea en la demo</span>
+        </p>
+      </div>
+
+      <figure class="topo" aria-label="Cada sede abre un túnel saliente hacia Emergycl; usted entra por el navegador">
+        <svg id="topo" viewBox="0 0 560 420" role="img" aria-hidden="true">
+          <defs>
+            <radialGradient id="hubglow" cx="50%" cy="50%" r="50%">
+              <stop offset="0" stop-color="#f5a524" stop-opacity=".35"/>
+              <stop offset="1" stop-color="#f5a524" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <g class="links" fill="none">
+            <path id="l1" d="M150 50 C 260 50, 280 210, 360 210"/>
+            <path id="l2" d="M150 120 C 250 120, 280 210, 360 210"/>
+            <path id="l3" d="M150 190 C 250 190, 290 210, 360 210"/>
+            <path id="l4" d="M150 260 C 250 260, 290 210, 360 210" data-machine="planta-funza-gw"/>
+            <path id="l5" d="M150 330 C 250 330, 280 210, 360 210"/>
+            <path id="l6" d="M150 395 C 260 395, 280 210, 360 210"/>
+            <path id="lo" class="out" d="M396 210 C 450 210, 460 210, 510 210"/>
+          </g>
+          <g class="packets">
+            <circle r="3"><animateMotion dur="3.1s" repeatCount="indefinite"><mpath href="#l1"/></animateMotion></circle>
+            <circle r="3"><animateMotion dur="2.6s" repeatCount="indefinite"><mpath href="#l2"/></animateMotion></circle>
+            <circle r="3"><animateMotion dur="2.9s" repeatCount="indefinite"><mpath href="#l3"/></animateMotion></circle>
+            <circle r="3" class="pk-funza"><animateMotion dur="3.4s" repeatCount="indefinite"><mpath href="#l4"/></animateMotion></circle>
+            <circle r="3"><animateMotion dur="2.7s" repeatCount="indefinite"><mpath href="#l5"/></animateMotion></circle>
+            <circle r="3"><animateMotion dur="3.3s" repeatCount="indefinite"><mpath href="#l6"/></animateMotion></circle>
+            <circle r="3" class="pk-out"><animateMotion dur="1.4s" repeatCount="indefinite"><mpath href="#lo"/></animateMotion></circle>
+          </g>
+          <g class="sites">
+            <g transform="translate(0 50)"><circle cx="150" r="5"/><text x="136" y="4">UPS · Clínica Norte</text></g>
+            <g transform="translate(0 120)"><circle cx="150" r="5"/><text x="136" y="4">Datacenter Calle 26</text></g>
+            <g transform="translate(0 190)"><circle cx="150" r="5"/><text x="136" y="4">PC · Notaría Usaquén</text></g>
+            <g transform="translate(0 260)" id="site-funza"><circle cx="150" r="5"/><text x="136" y="4">Planta Funza</text></g>
+            <g transform="translate(0 330)"><circle cx="150" r="5"/><text x="136" y="4">NVR · Chapinero</text></g>
+            <g transform="translate(0 395)"><circle cx="150" r="5"/><text x="136" y="4">Switch · Medellín</text></g>
+          </g>
+          <circle cx="378" cy="210" r="70" fill="url(#hubglow)"/>
+          <g class="hub">
+            <rect x="350" y="182" width="56" height="56" rx="14"/>
+            <path d="M362 214h8l4-11 6 20 4-11h8" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="378" y="262">Emergycl</text>
+          </g>
+          <g class="viewer">
+            <rect x="510" y="190" width="44" height="32" rx="4"/>
+            <path d="M524 230h16"/>
+            <text x="532" y="250">Usted</text>
+          </g>
+        </svg>
+        <figcaption>Cada sede abre un túnel <em>saliente</em>. No hace falta IP pública, VPN ni redirigir puertos en el router del cliente.</figcaption>
+      </figure>
+    </section>
+
+    <!-- Demo -->
+    <section id="demo" class="demo-section" aria-labelledby="demo-title">
+      <div class="section-head">
+        <h2 id="demo-title">Pruébelo aquí mismo</h2>
+        <p>Esta es una simulación del panel con seis sedes ficticias. Mientras la mira, Clínica Norte sufre un corte de energía y la planta de Funza pierde internet. Abra cada pestaña, pregúntele al asistente o escriba en la terminal.</p>
+      </div>
+
+      <div class="demo-modes" role="tablist" aria-label="Formato de la demo" id="demo-modes" hidden>
+        <button role="tab" aria-selected="true" aria-controls="demo-live" id="mode-live">Demo en vivo</button>
+        <button role="tab" aria-selected="false" aria-controls="demo-video" id="mode-video">Video</button>
+      </div>
+
+      <div class="app" id="demo-live" role="region" aria-label="Panel de demostración">
+        <div class="app-bar">
+          <span class="app-lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="app-url">panel.emergycl.co</span>
+          <span class="app-user">Rol: administrador</span>
+        </div>
+        <div class="app-body">
+          <nav class="app-nav" role="tablist" aria-label="Secciones del panel" aria-orientation="vertical">
+            <button role="tab" aria-selected="true" aria-controls="p-equipos" id="t-equipos">Equipos <span class="count" id="c-equipos">6/6</span></button>
+            <button role="tab" aria-selected="false" aria-controls="p-ups" id="t-ups" tabindex="-1">UPS (SNMP) <span class="flag" id="f-ups" hidden>batería</span></button>
+            <button role="tab" aria-selected="false" aria-controls="p-dc" id="t-dc" tabindex="-1">Datacenter</button>
+            <button role="tab" aria-selected="false" aria-controls="p-alertas" id="t-alertas" tabindex="-1">Alertas <span class="count" id="c-alertas">0</span></button>
+            <button role="tab" aria-selected="false" aria-controls="p-ia" id="t-ia" tabindex="-1">Asistente IA</button>
+            <button role="tab" aria-selected="false" aria-controls="p-term" id="t-term" tabindex="-1">Terminal</button>
+          </nav>
+
+          <div class="app-panels">
+            <!-- Equipos -->
+            <div role="tabpanel" id="p-equipos" aria-labelledby="t-equipos" class="panel">
+              <div class="machines" id="machines"></div>
+              <h3 class="panel-sub">Actividad</h3>
+              <ol class="activity" id="activity"></ol>
+            </div>
+
+            <!-- UPS -->
+            <div role="tabpanel" id="p-ups" aria-labelledby="t-ups" class="panel" hidden>
+              <p class="panel-intro">UPS de la sala eléctrica de Clínica Norte, leída por SNMP a través del túnel de la sede.</p>
+              <div class="lcd" id="ups-lcd">
+                <div class="lcd-main">
+                  <span class="lcd-label">Alimentación</span>
+                  <strong id="ups-source">Red eléctrica</strong>
+                </div>
+                <dl class="readings" id="ups-readings"></dl>
+              </div>
+              <div class="chart">
+                <div class="chart-head"><span>Batería, último minuto</span><span id="ups-batt-now"></span></div>
+                <svg viewBox="0 0 300 70" preserveAspectRatio="none" aria-hidden="true"><path id="ups-spark" vector-effect="non-scaling-stroke"/></svg>
+              </div>
+              <ul class="alarms" id="ups-alarms"></ul>
+            </div>
+
+            <!-- Datacenter -->
+            <div role="tabpanel" id="p-dc" aria-labelledby="t-dc" class="panel" hidden>
+              <p class="panel-intro">Sensores del cuarto de servidores de Datacenter Calle 26. Las lecturas llegan por HTTP desde la sede.</p>
+              <dl class="readings readings-wide" id="dc-readings"></dl>
+              <div class="chart">
+                <div class="chart-head"><span>Temperatura, último minuto</span><span id="dc-temp-now"></span></div>
+                <svg viewBox="0 0 300 70" preserveAspectRatio="none" aria-hidden="true"><path id="dc-spark" vector-effect="non-scaling-stroke"/></svg>
+              </div>
+              <table class="phases">
+                <caption>Energía trifásica del tablero</caption>
+                <thead><tr><th scope="col">Fase</th><th scope="col">Voltaje</th><th scope="col">Corriente</th></tr></thead>
+                <tbody id="dc-phases"></tbody>
+              </table>
+            </div>
+
+            <!-- Alertas -->
+            <div role="tabpanel" id="p-alertas" aria-labelledby="t-alertas" class="panel" hidden>
+              <div class="alerts-layout">
+                <div>
+                  <p class="panel-intro">Así llegan los avisos a Telegram. Con Node-RED se reenvían a WhatsApp, correo o SMS.</p>
+                  <ul class="channels">
+                    <li><span class="dot ok"></span>Telegram · grupo Soporte IIT</li>
+                    <li><span class="dot ok"></span>WhatsApp · vía Node-RED</li>
+                    <li><span class="dot ok"></span>Webhook · su sistema de tickets</li>
+                  </ul>
+                  <p class="hint">Tiempo de gracia en la demo: 8 s (en el producto, 1 min por defecto) para no avisar por cortes de segundos.</p>
+                </div>
+                <div class="phone" aria-label="Chat de Telegram simulado">
+                  <div class="phone-head"><span class="avatar" aria-hidden="true">E</span><span>Emergycl Alertas<small>bot</small></span></div>
+                  <ol class="phone-feed" id="tg-feed" aria-live="polite">
+                    <li class="empty">Sin avisos todavía. El primer corte llega a los 20 s.</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+
+            <!-- IA -->
+            <div role="tabpanel" id="p-ia" aria-labelledby="t-ia" class="panel" hidden>
+              <ol class="chat" id="chat" aria-live="polite">
+                <li class="msg bot">Hola. Veo las seis máquinas de la demo. Pregúnteme por su estado o pídame una acción: nada se ejecuta sin su aprobación.</li>
+              </ol>
+              <div class="chips" id="chips">
+                <button type="button">¿Qué equipos están caídos?</button>
+                <button type="button">¿Cómo está la UPS de Clínica Norte?</button>
+                <button type="button">¿Temperatura del datacenter?</button>
+                <button type="button">Reinicia Node-RED en la planta de Funza</button>
+              </div>
+              <form class="chat-form" id="chat-form">
+                <label class="sr" for="chat-input">Mensaje para el asistente</label>
+                <input id="chat-input" autocomplete="off" placeholder="Escriba una pregunta">
+                <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
+              </form>
+            </div>
+
+            <!-- Terminal -->
+            <div role="tabpanel" id="p-term" aria-labelledby="t-term" class="panel" hidden>
+              <p class="panel-intro">Terminal SSH en el navegador, por un servicio privado del túnel. <label for="term-machine">Equipo:</label>
+                <select id="term-machine"></select></p>
+              <div class="term" id="term">
+                <pre id="term-out" aria-live="polite"></pre>
+                <form id="term-form" class="term-line">
+                  <label for="term-input" id="term-prompt">pi@clinica-norte-ups:~$</label>
+                  <input id="term-input" autocomplete="off" spellcheck="false" autocapitalize="off">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-wrap" id="demo-video" hidden>
+        <video id="demo-video-el" controls preload="metadata" playsinline poster="assets/video/poster.svg">
+          <source src="assets/video/demo.mp4" type="video/mp4">
+        </video>
+      </div>
+    </section>
+
+    <!-- Funciones -->
+    <section id="funciones" class="features" aria-labelledby="funciones-title">
+      <div class="section-head">
+        <h2 id="funciones-title">Lo que hace por su operación</h2>
+        <p>Una sola instalación por sede. Lo demás se agrega desde el panel.</p>
+      </div>
+
+      <div class="rows">
+        <details>
+          <summary><span class="row-title">Entrar a cualquier equipo desde el navegador</span><span class="row-sum">Pantalla, terminal y escritorio remoto de Windows, sin instalar nada en su PC.</span></summary>
+          <div class="row-body">
+            <p>Desde la tarjeta de la máquina elige cómo conectarse. La pantalla va por WebRTC directo entre su navegador y el equipo, con menos latencia; si la red del cliente lo bloquea, sigue por el túnel sin que usted haga nada.</p>
+            <ul><li>Pantalla de Raspberry Pi y Linux, como Raspberry Pi Connect</li><li>Agente propio para Windows: ve la pantalla de inicio de sesión y sigue al usuario</li><li>Escritorio remoto (RDP) con teclado en español latinoamericano</li><li>Terminal SSH con portapapeles</li></ul>
+          </div>
+        </details>
+        <details>
+          <summary><span class="row-title">Monitoreo SNMP de UPS, switches, impresoras y servidores</span><span class="row-sum">Detecta el tipo de equipo y trae sus lecturas sin configurar OIDs.</span></summary>
+          <div class="row-body">
+            <p>El gateway de la sede consulta los equipos de su red local y el panel los muestra con gráficas de hasta 30 días. Los umbrales vienen listos y se ajustan por equipo.</p>
+            <ul><li>UPS: en batería, bypass, autonomía, carga, temperatura y reemplazo de batería</li><li>Switches: interfaces vigiladas, tráfico y errores</li><li>Impresoras: consumibles, atascos y páginas</li><li>Servidores y NAS: CPU, memoria y discos</li></ul>
+          </div>
+        </details>
+        <details>
+          <summary><span class="row-title">Datacenter y cuartos técnicos</span><span class="row-sum">Temperatura, humedad, CO, energía trifásica, aperturas con huella y cámaras.</span></summary>
+          <div class="row-body">
+            <p>Cualquier sensor que pueda enviar una lectura por HTTP entra al panel: ESP32, Raspberry Pi, PLC o Node-RED. Historial de 12 horas a un mes y alertas por umbral.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="row-title">Avisos donde usted ya está</span><span class="row-sum">Telegram, WhatsApp, correo o su sistema de tickets, con aviso de recuperación.</span></summary>
+          <div class="row-body">
+            <p>Un tiempo de gracia evita las falsas alarmas por cortes de segundos. Cuando el equipo vuelve, el aviso dice cuánto tiempo estuvo caído. Si el propio servidor deja de responder, también avisa.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="row-title">Un asistente con IA que diagnostica y espera su aprobación</span><span class="row-sum">Explica la causa probable de cada caída y propone acciones que usted aprueba.</span></summary>
+          <div class="row-body">
+            <p>Cuando una máquina cae, el asistente revisa sus eventos, si otros equipos del mismo cliente cayeron y si la UPS estaba en batería, y le envía un segundo mensaje con la causa probable. Solo puede usar las consultas y comandos que usted le permitió para cada equipo, y toda acción queda pendiente hasta que alguien la apruebe en el panel o en Telegram.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="row-title">Técnicos y clientes, cada uno con lo suyo</span><span class="row-sum">Roles de administrador, técnico y cliente, con verificación en dos pasos.</span></summary>
+          <div class="row-body">
+            <p>Un técnico solo ve los clientes que tiene asignados. Su cliente puede consultar el estado de sus propios equipos sin ver credenciales ni configuración. Cada acción queda registrada con el nombre de quien la hizo.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="row-title">Instalación en una línea</span><span class="row-sum">Un código de un solo uso; sin archivos con contraseñas por correo o USB.</span></summary>
+          <div class="row-body">
+            <p>En la Raspberry Pi, el PC o el servidor se pega una línea y el equipo queda registrado como servicio, con SSH y pantalla privados agregados según el sistema operativo.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="row-title">Su servidor, sus datos</span><span class="row-sum">En nuestra nube o en un VPS o servidor propio, con respaldos diarios cifrados.</span></summary>
+          <div class="row-body">
+            <p>Emergycl corre en Node.js sin dependencias externas. Se instala con Docker o como servicio de Linux, y la página de estado avisa si los respaldos fallan, el disco se llena o falta activar HTTPS.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Cómo funciona -->
+    <section id="como-funciona" class="steps-section" aria-labelledby="como-title">
+      <div class="section-head">
+        <h2 id="como-title">De cero a monitoreado en una tarde</h2>
+      </div>
+      <ol class="steps">
+        <li>
+          <h3>Registre la sede</h3>
+          <p>En el panel crea el cliente y genera un código de instalación. Vence solo y sirve una vez.</p>
+        </li>
+        <li>
+          <h3>Pegue una línea en el equipo</h3>
+          <p>Una Raspberry Pi, un PC o un servidor de la sede. Queda como servicio y se reconecta solo tras un corte.</p>
+          <pre class="code" aria-label="Ejemplo de instalación en Linux"><code>curl -fsSL https://panel.emergycl.co/i/<span>K7QM-2WXD-91HF</span>/linux | sudo bash</code></pre>
+        </li>
+        <li>
+          <h3>Agregue lo que quiere ver</h3>
+          <p>UPS y switches por SNMP, sensores del datacenter, cámaras y accesos remotos. Las alertas empiezan a funcionar de inmediato.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Seguridad -->
+    <section id="seguridad" class="security" aria-labelledby="seg-title">
+      <div class="section-head">
+        <h2 id="seg-title">Pensado para no abrir puertas</h2>
+        <p>Si el panel no puede verificar una conexión, la rechaza. El sistema falla cerrado.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>0 puertos</dt><dd>abiertos en el router del cliente. La conexión siempre sale de la sede.</dd></div>
+        <div><dt>1 token</dt><dd>por equipo, guardado solo como hash. Deshabilitar una máquina corta su tráfico al instante.</dd></div>
+        <div><dt>Privado</dt><dd>SSH, RDP y VNC no tienen puerto público: solo entran los equipos autorizados.</dd></div>
+        <div><dt>288 pruebas</dt><dd>automáticas de punta a punta con túneles reales antes de cada versión.</dd></div>
+      </dl>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="contact" aria-labelledby="contacto-title">
+      <h2 id="contacto-title">Veamos sus sedes en el panel</h2>
+      <p>Le mostramos Emergycl con uno de sus equipos en una llamada de 30 minutos. Si ya tiene una Raspberry Pi o un PC en la sede, lo dejamos conectado ese mismo día.</p>
+      <form class="contact-form" id="contact-form" novalidate>
+        <div class="field"><label for="cf-name">Nombre</label><input id="cf-name" name="nombre" autocomplete="name" required></div>
+        <div class="field"><label for="cf-company">Empresa</label><input id="cf-company" name="empresa" autocomplete="organization"></div>
+        <div class="field"><label for="cf-email">Correo</label><input id="cf-email" name="correo" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="cf-sites">¿Cuántas sedes o equipos?</label>
+          <select id="cf-sites" name="sedes"><option>1 a 5</option><option>6 a 20</option><option>21 a 100</option><option>Más de 100</option></select></div>
+        <div class="field field-wide"><label for="cf-msg">¿Qué quiere monitorear?</label><textarea id="cf-msg" name="mensaje" rows="3" placeholder="UPS, datacenter, PCs de recepción, cámaras…"></textarea></div>
+        <div class="field-wide form-foot">
+          <button class="btn btn-primary" type="submit">Agendar la demostración</button>
+          <p class="form-status" id="cf-status" role="status"></p>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-brand">
+      <a class="brand" href="#"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 22h7l3-9 4 14 3-9h7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Emergycl</span></a>
+      <p>Un producto de <a href="https://infraestructura-it.com">Infraestructura-IT</a>, Bogotá, Colombia.</p>
+    </div>
+    <nav aria-label="Mapa del sitio">
+      <ul>
+        <li><a href="#demo">Demo</a></li>
+        <li><a href="#funciones">Funciones</a></li>
+        <li><a href="#como-funciona">Cómo funciona</a></li>
+        <li><a href="#seguridad">Seguridad</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <p class="foot-note">Pulse <kbd>Esc</kbd> para pausar o reanudar las animaciones.</p>
+  </footer>
+</body>
+</html>

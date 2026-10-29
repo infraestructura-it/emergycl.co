@@ -1,0 +1,11 @@
+{
+  "name": "emergycl.co",
+  "private": true,
+  "description": "Sitio de producto de Emergycl (monitoreo y acceso remoto de infraestructura) con demo interactiva",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "start": "node scripts/serve.mjs"
+  },
+  "engines": { "node": ">=20" }
+}
